@@ -1,49 +1,38 @@
-const path = require("path");
-const webpack = require("webpack");
-// const dotenv = require("dotenv");
-// const Dotenv = require("dotenv-webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-
-// dotenv.config({
-//   path: envPath,
-// });
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
-  name: "React18-webpack-babel-setting", // 설정 이름
-  mode: "development", // production, development // 설정 모드
-  devtool: "inline-source-map",
+  name: 'React17-webpack-babel-setting', // 설정 이름
+  mode: 'development', // production, development // 설정 모드
+  devtool: 'inline-source-map',
   entry: {
-    app: "./src/index.tsx",
+    app: './src/index.tsx',
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: "ts-loader",
+        use: 'ts-loader',
         exclude: /node_modules/,
       },
       {
-        // 리액트 바벨 설정
-        test: /\.js/,
+        //   // 리액트 바벨 설정
+        test: /\.(ts|tsx|js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
-          },
-        },
+        use: 'babel-loader',
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
       {
-        enforce: "pre",
+        enforce: 'pre',
         test: /\.js$/,
-        loader: "source-map-loader",
+        loader: 'source-map-loader',
       },
     ],
   },
@@ -53,23 +42,22 @@ const config = {
     // }),
     // new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: "./public/index.html", // 템플릿 설정
+      template: './public/index.html', // 템플릿 설정
       minify: true, // 압축 설정
     }),
     new webpack.ProvidePlugin({
       // 리액트 자동 로드
-      React: "react",
+      React: 'react',
     }),
-    // new ESLintPlugin(),
   ],
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "app.js",
-    publicPath: "/",
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'app.js',
+    publicPath: '/',
   },
   devServer: {
     // 개발 서버 설정
-    static: "./dist",
+    static: './dist',
     port: 3000,
     hot: true, // 핫 모듈 교체(HMR) 활성화
     compress: true,
