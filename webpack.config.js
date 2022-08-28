@@ -11,15 +11,20 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const config = {
   name: "React18-webpack-babel-setting", // 설정 이름
   mode: "development", // production, development // 설정 모드
-  devtool: "eval",
+  devtool: "inline-source-map",
   entry: {
-    app: "./src/index.js",
+    app: "./src/index.tsx",
   },
   resolve: {
-    extensions: [".js"],
+    extensions: [".tsx", ".ts", ".js"],
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
       {
         // 리액트 바벨 설정
         test: /\.js/,
@@ -34,6 +39,11 @@ const config = {
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
+      },
+      {
+        enforce: "pre",
+        test: /\.js$/,
+        loader: "source-map-loader",
       },
     ],
   },
@@ -66,6 +76,10 @@ const config = {
     open: true,
     historyApiFallback: true,
   },
+  //   externals: {
+  //     react: "React",
+  //     "react-dom": "ReactDOM",
+  //   },
 };
 
 // if (isDev && config.plugins) {
