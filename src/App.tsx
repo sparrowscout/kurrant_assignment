@@ -1,20 +1,7 @@
-import * as React from 'react';
-import styled from 'styled-components';
+import * as React from "react";
 
-function App() {
-  return (
-    <>
-      <MainBack>app</MainBack>
-    </>
-  );
-}
-
-interface MainBackProps {
-  color: string;
-}
-
-const MainBack = styled.div<MainBackProps>`
-  color: #9573ff;
-`;
+const App = () => {
+  return <h1>App</h1>;
+};
 
 export default App;
