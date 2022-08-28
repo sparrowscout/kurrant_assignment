@@ -31,7 +31,8 @@
     "target": "ES6",
     "jsx": "preserve",
     "allowJs": false,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "skipLibCheck": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

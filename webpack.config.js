@@ -27,13 +27,24 @@ const config = {
       },
       {
         test: /\.css$/i,
+        exclude: /node_modules/,
         use: ['style-loader', 'css-loader'],
       },
       {
         enforce: 'pre',
         test: /\.js$/,
+        exclude: /node_modules/,
         loader: 'source-map-loader',
       },
+      // {
+      //   test: /\.tsx?$/,
+      //   loader: 'awesome-typescript-loader',
+      //   options: {
+      //     getCustomTransformers: () => ({
+      //       before: [styledComponentsTransformer],
+      //     }),
+      //   },
+      // },
     ],
   },
   plugins: [
